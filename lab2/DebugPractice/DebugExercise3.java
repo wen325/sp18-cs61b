@@ -10,7 +10,7 @@ public class DebugExercise3 {
             double cost = in.readDouble();
             int numAvailable = in.readInt();
             if (foodType.equals("turnip")) {
-                int newTotal = totalTurnips + numAvailable;
+                int newTotal = totalTurnips + numAvailable;   // the number of 0.45 cost item is negative, I revised the foods.csv
                 totalTurnips = newTotal;
             }
             in.readLine();
