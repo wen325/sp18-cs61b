@@ -1,24 +1,24 @@
 import java.math.*;
 
 /**
- *  Tests Planet's update() method
+ * Tests Planet's update() method
  */
 public class TestUpdate {
 
     /**
-     *  Tests update.
+     * Tests update.
      */
     public static void main(String[] args) {
         checkUpdate();
     }
 
     /**
-     *  Checks whether or not two Doubles are equal and prints the result.
+     * Checks whether or not two Doubles are equal and prints the result.
      *
-     *  @param  expected    Expected double
-     *  @param  actual      Double received
-     *  @param  label       Label for the 'test' case
-     *  @param  eps         Tolerance for the double comparison.
+     * @param expected Expected double
+     * @param actual   Double received
+     * @param label    Label for the 'test' case
+     * @param eps      Tolerance for the double comparison.
      */
     private static void checkEquals(double expected, double actual, String label, double eps) {
         if (Math.abs(expected - actual) <= eps * Math.max(expected, actual)) {
@@ -28,9 +28,8 @@ public class TestUpdate {
         }
     }
 
-
     /**
-     *  Checks the Planet class to make sure update works.
+     * Checks the Planet class to make sure update works.
      */
     private static void checkUpdate() {
         System.out.println("Checking update...");
