@@ -31,7 +31,10 @@ public class NBody {
             for (int i = 0; i < num; i++) {
                 Planets[i].update(dt, xForces[i], yForces[i]);
             }
-            draw_background(Radius, background);
+            StdDraw.setScale(-Radius, Radius);
+            StdDraw.clear();
+            StdDraw.picture(0, 0, background);
+            StdDraw.show();
             for (Planet planet : Planets) {
                 planet.draw();
             }
@@ -78,15 +81,6 @@ public class NBody {
             i += 1;
         }
         return Planets;
-    }
-
-    // ** draw the background img*/
-    public static void draw_background(double dt, String background) {
-        StdDraw.setScale(-dt, dt);
-        StdDraw.clear();
-        StdDraw.picture(0, 0, background);
-        StdDraw.show();
-        // StdDraw.pause(2000);
     }
 
 }
