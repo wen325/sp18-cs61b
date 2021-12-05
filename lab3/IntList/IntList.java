@@ -117,11 +117,11 @@ public class IntList {
         if (A == null) {
             return null;
         }
-        IntList p = A;
-        IntList q = new IntList(p.first, null);
-        while (p.rest != null) {
-            p = p.rest;
-            q = new IntList(p.first, q);
+//        IntList p = A;
+        IntList q = new IntList(A.first, null);
+        while (A.rest != null) {
+            q = new IntList(A.rest.first, q);
+            A.rest = A.rest.rest;
         }
         return q;
     }
