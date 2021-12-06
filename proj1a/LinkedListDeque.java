@@ -49,14 +49,9 @@ public class LinkedListDeque<T> {
         size += 1;
     }
 
-    /** return first item of Deque */
-    public T getFirst() {
-        return sentinel_front.next.item;
-    }
-
     /** remove and return the item at the front; if no item exists, return null */
     public T removeFirst() {
-        T k = getFirst();
+        T k = sentinel_front.next.item;
         sentinel_front.next = sentinel_front.next.next;
         size -= 1;
         return k;
@@ -69,13 +64,10 @@ public class LinkedListDeque<T> {
         size += 1;
     }
 
-    /** return last item of Deque */
-    public T getLast() {
-        return sentinel_back.next.item;
-    }
-
     /** remove and return the item at the back; if no item exists, return null */
-
+    public T removeLast(){
+        return null;
+    }
     /** return Deque length */
     public int size(){
         return size;

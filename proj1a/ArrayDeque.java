@@ -14,15 +14,6 @@ public class ArrayDeque<T> {
 		size = 0;
 	}
 
-	/** Creates a list with X. */
-	public ArrayDeque(T x){
-		items = (T[]) new Object[8];
-		items[start] = x;
-		sentinel_front = start -1;
-		sentinel_back = start + 1;
-		size = 1;
-	}
-
 	/** Returns true if deque is empty, false otherwise. */
 	public boolean isEmpty(){
 		if (items == null){
@@ -41,7 +32,7 @@ public class ArrayDeque<T> {
 	/** Inserts X into the front of the list. */
 	public void addFirst(T x){
 		items[sentinel_front] = x;
-		sentinel_front -= 1;
+		sentinel_front += 1;
 		size += 1;
 	}
 
@@ -58,11 +49,6 @@ public class ArrayDeque<T> {
 		items[sentinel_back] = x;
 		sentinel_back -= 1;
 		size += 1;
-	}
-
-	/** Returns the item from the back of the list. */
-	public T getLast() {
-		return items[sentinel_back - 1];
 	}
 
 	/** Deletes item from back of the list and
