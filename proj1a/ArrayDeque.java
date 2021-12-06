@@ -18,8 +18,8 @@ public class ArrayDeque<Item> {
 	public ArrayDeque(Item x){
 		items = (Item[]) new Object[8];
 		items[start] = x;
-		sentinel_front = current -1;
-		sentinel_back = current + 1;
+		sentinel_front = start -1;
+		sentinel_back = start + 1;
 		size = 1;
 	}
 
