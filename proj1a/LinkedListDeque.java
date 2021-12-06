@@ -3,7 +3,7 @@ public class LinkedListDeque<T> {
     private Deque sentinel_back;
     private int size;
 
-    public class Deque {
+    private class Deque {
         public T item;
         public Deque next;
 
@@ -31,14 +31,14 @@ public class LinkedListDeque<T> {
     /**
      * gets the item at the given index, where 0 is the front, 1 is the next item
      */
-    public T get(int x) {
+    public T get(int index) {
         Deque p = sentinel_front;
-        while (x > 0) {
+        while (index > 0) {
             p = p.next;
             if(p == null){
                 return null;
             }
-            x -= 1;
+            index -= 1;
         }
         return p.item;
     }
@@ -51,10 +51,10 @@ public class LinkedListDeque<T> {
 
     /** remove and return the item at the front; if no item exists, return null */
     public T removeFirst() {
-        T k = sentinel_front.next.item;
+        T item = sentinel_front.next.item;
         sentinel_front.next = sentinel_front.next.next;
         size -= 1;
-        return k;
+        return item;
     }
 
     /** add x to the Last */
@@ -86,6 +86,20 @@ public class LinkedListDeque<T> {
     public void printDeque(){
         for(int i = 0; i < size; i++){
             System.out.print(get(i)+" ");
+        }
+    }
+
+    /** Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth.
+     *  use resursion;
+     */
+    public T getRecursive(int index){
+        if(index == 0){
+            return sentinel_front.item;
+        }else{
+            Deque p = sentinel_front.next;
+            return p.item;
+//            return p.getRecursive(index - 1);
+
         }
     }
 }
