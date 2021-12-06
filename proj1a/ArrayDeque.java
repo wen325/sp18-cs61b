@@ -1,6 +1,6 @@
-public class ArrayDeque<Item> {
+public class ArrayDeque<T> {
 
-	private Item[] items;
+	private T[] items;
 	private int size;
 	private int sentinel_front;
 	private int sentinel_back;
@@ -8,15 +8,15 @@ public class ArrayDeque<Item> {
 
 	/** Creates an empty list. */
 	public ArrayDeque() {
-		items = (Item[]) new Object[8];
+		items = (T[]) new Object[8];
 		sentinel_front = start;
 		sentinel_back = start;
 		size = 0;
 	}
 
 	/** Creates a list with X. */
-	public ArrayDeque(Item x){
-		items = (Item[]) new Object[8];
+	public ArrayDeque(T x){
+		items = (T[]) new Object[8];
 		items[start] = x;
 		sentinel_front = start -1;
 		sentinel_back = start + 1;
@@ -39,43 +39,43 @@ public class ArrayDeque<Item> {
 	}
 
 	/** Inserts X into the front of the list. */
-	public void addFirst(Item x){
+	public void addFirst(T x){
 		items[sentinel_front] = x;
 		sentinel_front -= 1;
 		size += 1;
 	}
 
 	/** Removes and returns the item at the front of the deque. If no such item exists, returns null. */
-	public Item removeFirst(){
-		Item x = get(0);
+	public T removeFirst(){
+		T x = get(0);
 		sentinel_front += 1;
 		items[sentinel_front - 1] = null;
 		return x;
 	}
 
 	/** Inserts X into the back of the list. */
-	public void addLast(Item x) {
+	public void addLast(T x) {
 		items[sentinel_back] = x;
 		sentinel_back -= 1;
 		size += 1;
 	}
 
 	/** Returns the item from the back of the list. */
-	public Item getLast() {
+	public T getLast() {
 		return items[sentinel_back - 1];
 	}
 
 	/** Deletes item from back of the list and
 	 * returns deleted item. */
-	public Item removeLast() {
-		Item x = items[sentinel_back - 1];
+	public T removeLast() {
+		T x = items[sentinel_back - 1];
 		items[sentinel_back - 1] = null;
 		size = size - 1;
 		return x;
 	}
 
 	/** Gets the ith item in the list (0 is the front). */
-	public Item get(int i) {
+	public T get(int i) {
 		return items[i + sentinel_front + 1];
 	}
 

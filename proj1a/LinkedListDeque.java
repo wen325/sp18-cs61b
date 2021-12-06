@@ -1,13 +1,13 @@
-public class LinkedListDeque<BleepBlorp> {
+public class LinkedListDeque<T> {
     private Deque sentinel_front;
     private Deque sentinel_back;
     private int size;
 
     public class Deque {
-        public BleepBlorp item;
+        public T item;
         public Deque next;
 
-        public Deque(BleepBlorp i, Deque n) {
+        public Deque(T i, Deque n) {
             item = i;
             next = n;
         }
@@ -21,7 +21,7 @@ public class LinkedListDeque<BleepBlorp> {
     }
 
     /** Initialize the Deque with x */
-    public LinkedListDeque(BleepBlorp x) {
+    public LinkedListDeque(T x) {
         sentinel_front = new Deque(null, null);
         sentinel_front.next = new Deque(x, null);
         sentinel_back.next = new Deque(x, null);
@@ -31,7 +31,7 @@ public class LinkedListDeque<BleepBlorp> {
     /**
      * gets the item at the given index, where 0 is the front, 1 is the next item
      */
-    public BleepBlorp get(int x) {
+    public T get(int x) {
         Deque p = sentinel_front;
         while (x > 0) {
             p = p.next;
@@ -44,33 +44,33 @@ public class LinkedListDeque<BleepBlorp> {
     }
 
     /** add x to the First */
-    public void addFirst(BleepBlorp x) {
+    public void addFirst(T x) {
         sentinel_front.next = new Deque(x, sentinel_front.next);
         size += 1;
     }
 
     /** return first item of Deque */
-    public BleepBlorp getFirst() {
+    public T getFirst() {
         return sentinel_front.next.item;
     }
 
     /** remove and return the item at the front; if no item exists, return null */
-    public BleepBlorp removeFirst() {
-        BleepBlorp k = getFirst();
+    public T removeFirst() {
+        T k = getFirst();
         sentinel_front.next = sentinel_front.next.next;
         size -= 1;
         return k;
     }
 
     /** add x to the Last */
-    public void addLast(BleepBlorp x) {
+    public void addLast(T x) {
         sentinel_back.next = new Deque(x, null);
         sentinel_back = sentinel_back.next;
         size += 1;
     }
 
     /** return last item of Deque */
-    public BleepBlorp getLast() {
+    public T getLast() {
         return sentinel_back.next.item;
     }
 
