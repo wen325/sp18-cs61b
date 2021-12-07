@@ -87,11 +87,8 @@ public class ArrayDequeTest {
 
 	//** Test Array Resize function.* //
 	public static void resizeTest() {
-
 		System.out.println("Running resize test.");
-
 		ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
-
 		ad.addFirst(1);
 		ad.addFirst(2);
 		ad.addFirst(3);
@@ -106,8 +103,25 @@ public class ArrayDequeTest {
 
 	}
 
+	//** test get items at index i */
+	public static void getTest(){
+		System.out.println("Running resize test.");
+		ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
+		ad.addFirst(1);
+		ad.addFirst(2);
+		ad.addFirst(3);
+		ad.addLast(4);
+		ad.addLast(5);
+		ad.addLast(6);
+		ad.addLast(7);
+		ad.addLast(8);
+		System.out.println(ad.get(1));
+		System.out.println(ad.get(7));
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
-		resizeTest();
+//		resizeTest();
+		getTest();
 	}
 } 

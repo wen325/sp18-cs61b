@@ -35,7 +35,7 @@ public class ArrayDeque<T> {
 	}
 
 	/** Prints the items in the deque from first to last, separated by a space. */
-	public void printDeque(){
+	public void printDeque() {
 		for(int i = sentinel_front + 1; i< sentinel_back; i++) {
 			System.out.print(get(i) + " ");
 		}
@@ -58,6 +58,9 @@ public class ArrayDeque<T> {
 	/** Removes and returns the item at the front of the deque. If no such item exists, returns null. */
 	public T removeFirst() {
 		T x = items[sentinel_front + 1];
+		if (x == null){
+			return null;
+		}
 		sentinel_front += 1;
 		items[sentinel_front] = null;
 		size = size - 1;
@@ -66,11 +69,11 @@ public class ArrayDeque<T> {
 
 	/** Inserts X into the back of the list. */
 	public void addLast(T x) {
-		if (size == items.length){
+		if (size == items.length) {
 			resize((size * 2));
 		}
 		items[sentinel_back] = x;
-		if (sentinel_back == items.length - 1){
+		if (sentinel_back == items.length - 1) {
 			sentinel_back = 0;
 		}else{
 			sentinel_back += 1;
@@ -82,6 +85,9 @@ public class ArrayDeque<T> {
 	 * returns deleted item. */
 	public T removeLast() {
 		T x = items[sentinel_back - 1];
+		if (x == null){
+			return null;
+		}
 		sentinel_back -= 1;
 		items[sentinel_back] = null;
 		size = size - 1;
@@ -91,7 +97,11 @@ public class ArrayDeque<T> {
 	/** Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth.
 	 * If no such item exists, returns null.  */
 	public T get(int i) {
-		return items[i + sentinel_front + 1];
+        if (i + sentinel_front + 1 < items.length) {
+            return items[i + sentinel_front + 1];
+		}else{
+			return items[i + sentinel_front + 1 -items.length];
+        }
 	}
 
 	/** Returns the number of items in the list. */
