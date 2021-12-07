@@ -133,20 +133,36 @@ public class ArrayDequeTest {
 	}
 
 	//** d011) AD-basic: get. Test */
-	public static void d004Test() {
+	public static void d011Test() {
 		ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
-		ad.isEmpty();
-		ad.addLast(1);
+		ad.addFirst(0);
 		ad.removeLast();
-		ad.isEmpty();
+		ad.addFirst(2);
+		ad.addFirst(3);
+		ad.addLast(4);
+		ad.addFirst(5);
+		ad.addLast(6);
+		ad.addFirst(7);
+		ad.addFirst(8);
+		ad.addLast(9);
+		ad.get(7);
+		ad.removeFirst();
+		ad.removeFirst();
+		ad.get(1);
+		ad.removeFirst();
+		ad.addLast(15);
+		ad.addFirst(16);
+		ad.addFirst(17);
+		ad.addLast(18);
+		ad.removeLast();
 	}
 
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
 //		resizeTest();
 //		getTest();
-		isEmptyTest();
+//		isEmptyTest();
 //		removeEmptyTest();
-//		d004Test();
+		d011Test();
 	}
 } 

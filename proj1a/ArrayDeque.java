@@ -18,13 +18,19 @@ public class ArrayDeque<T> {
 	private void resize(int capacity){
 		if (capacity == size * 2) {
 			T[] a = (T[])new Object[capacity];
-			int front_end_length = items.length - sentinel_front;
-			int start_back_length = sentinel_back;
-			System.arraycopy(items, sentinel_front + 1, a, size - front_end_length + 1, items.length  - sentinel_front -1);
-			System.arraycopy(items, 0, a, size , sentinel_back );
+//			int front_end_length = items.length - sentinel_front;
+//			int start_back_length = sentinel_back;
+//			System.arraycopy(items, sentinel_front + 1, a, size - front_end_length + 1, items.length  - sentinel_front -1); // arraycopy is too complex;
+//			System.arraycopy(items, 0, a, size , sentinel_back );
+//			items = a;
+//			sentinel_front = size - front_end_length;
+//			sentinel_back = size + sentinel_back;
+			for (int i = 0; i < size; i++) {
+				a[capacity/4 + i] = this.get(i);
+			}
 			items = a;
-			sentinel_front = size - front_end_length;
-			sentinel_back = size + sentinel_back;
+			sentinel_front = capacity/4 - 1;
+			sentinel_back = capacity * 3/4 - 1;
 		}else{
 
 		}
