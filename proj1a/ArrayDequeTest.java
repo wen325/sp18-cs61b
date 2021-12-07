@@ -107,15 +107,15 @@ public class ArrayDequeTest {
 	public static void getTest(){
 		System.out.println("Running resize test.");
 		ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
-		ad.addFirst(1);
-		ad.addFirst(2);
-		ad.addFirst(3);
+		ad.addLast(0);
+		ad.addLast(1);
+		ad.addLast(2);
+		ad.addLast(3);
 		ad.addLast(4);
 		ad.addLast(5);
 		ad.addLast(6);
 		ad.addLast(7);
-		ad.addLast(8);
-		System.out.println(ad.get(5));
+		System.out.println(ad.get(0));
 		System.out.println(ad.get(7));
 	}
 

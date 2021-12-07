@@ -98,9 +98,9 @@ public class ArrayDeque<T> {
 	 * If no such item exists, returns null.  */
 	public T get(int i) {
         if (i + sentinel_front + 1 < items.length) {
-            return items[i + sentinel_front];
+            return items[i + sentinel_front + 1];
 		}else{
-			return items[i + sentinel_front -items.length];
+			return items[i + sentinel_front + 1 -items.length];
         }
 	}
 
