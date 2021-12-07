@@ -135,24 +135,25 @@ public class ArrayDequeTest {
 	//** d011) AD-basic: get. Test */
 	public static void d011Test() {
 		ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
-		ad.addFirst(0);
+		ad.addLast(0);
 		ad.removeFirst();
 		ad.addLast(2);
 		ad.addFirst(3);
-		ad.addLast(4);
-		ad.addFirst(5);
+		ad.addFirst(4);
+		ad.removeLast();
 		ad.addLast(6);
-		ad.addFirst(7);
+		ad.addLast(7);
+		ad.removeFirst();
+		ad.addFirst(9);
+		ad.addLast(10);
+		ad.removeLast();
+		ad.get(2);
+		ad.removeFirst();
+		ad.removeFirst();
 		ad.get(0);
 		ad.removeFirst();
-		ad.addFirst(10);
-		ad.addFirst(11);
-		ad.addFirst(12);
 		ad.removeFirst();
-		ad.addFirst(14);
-		ad.addLast(15);
-		ad.addLast(16);
-		ad.removeLast();
+		ad.addFirst(18);
 	}
 
 	public static void resizeDownTest() {
@@ -162,6 +163,7 @@ public class ArrayDequeTest {
 		ad.addLast(3);
 		ad.addLast(4);
 		ad.addLast(5);
+		ad.removeLast();
 		ad.addLast(6);
 		ad.addLast(7);
 		ad.addLast(8);
@@ -181,7 +183,7 @@ public class ArrayDequeTest {
 //		getTest();
 //		isEmptyTest();
 //		removeEmptyTest();
-//		d011Test();
-		resizeDownTest();
+		d011Test();
+//		resizeDownTest();
 	}
 } 

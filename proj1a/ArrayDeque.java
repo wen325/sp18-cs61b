@@ -15,7 +15,7 @@ public class ArrayDeque<T> {
 	}
 
 	/** Resizes the underlying array to the target capacity. */
-	private void resize(int capacity){
+	private void resize(int capacity) {
 		if (capacity == size * 2) {
 			T[] a = (T[])new Object[capacity];
 //			int front_end_length = items.length - sentinel_front;
@@ -85,7 +85,7 @@ public class ArrayDeque<T> {
             sentinel_front += 1;
 		}
           size = size - 1;
-	    if (size == items.length/2) {        //deal with resize down
+	    if (size == items.length/2 && size >=16) {        //deal with resize down
 		    resize(size);
 	    }
           return x;
@@ -119,7 +119,7 @@ public class ArrayDeque<T> {
 			}
 		size = size - 1;
 
-		if (size == items.length/2) {        //deal with resize down
+		if (size == items.length/2 && size >= 16) {        //deal with resize down
 			resize(size);
 		}
 		return x;
