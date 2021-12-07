@@ -69,6 +69,10 @@ public class LinkedListDeque<T> {
 
     /** remove and return the item at the back; if no item exists, return null */
     public T removeLast(){
+        if (sentinel_back.next == null){
+            return null;
+        }
+        T item = sentinel_back.next.item;
         return null;
     }
     /** return Deque length */
@@ -87,7 +91,7 @@ public class LinkedListDeque<T> {
 
     /** Prints the items in the deque from first to last, separated by space. */
     public void printDeque(){
-        for(int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++){
             System.out.print(get(i)+" ");
         }
     }

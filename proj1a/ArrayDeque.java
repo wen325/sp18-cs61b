@@ -32,7 +32,7 @@ public class ArrayDeque<T> {
 	/** Inserts X into the front of the list. */
 	public void addFirst(T x){
 		items[sentinel_front] = x;
-		sentinel_front += 1;
+		sentinel_front -= 1;
 		size += 1;
 	}
 
@@ -47,7 +47,7 @@ public class ArrayDeque<T> {
 	/** Inserts X into the back of the list. */
 	public void addLast(T x) {
 		items[sentinel_back] = x;
-		sentinel_back -= 1;
+		sentinel_back += 1;
 		size += 1;
 	}
 
@@ -60,7 +60,8 @@ public class ArrayDeque<T> {
 		return x;
 	}
 
-	/** Gets the ith item in the list (0 is the front). */
+	/** Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth.
+	 * If no such item exists, returns null.  */
 	public T get(int i) {
 		return items[i + sentinel_front + 1];
 	}
