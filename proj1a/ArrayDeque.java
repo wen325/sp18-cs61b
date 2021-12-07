@@ -85,7 +85,7 @@ public class ArrayDeque<T> {
 	 * returns deleted item. */
 	public T removeLast() {
 		T x = items[sentinel_back - 1];
-		if (x == null){
+		if (x == null) {
 			return null;
 		}
 		sentinel_back -= 1;
@@ -98,9 +98,9 @@ public class ArrayDeque<T> {
 	 * If no such item exists, returns null.  */
 	public T get(int i) {
         if (i + sentinel_front + 1 < items.length) {
-            return items[i + sentinel_front + 1];
+            return items[i + sentinel_front];
 		}else{
-			return items[i + sentinel_front + 1 -items.length];
+			return items[i + sentinel_front -items.length];
         }
 	}
 

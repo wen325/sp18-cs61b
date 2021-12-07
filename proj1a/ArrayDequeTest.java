@@ -115,7 +115,7 @@ public class ArrayDequeTest {
 		ad.addLast(6);
 		ad.addLast(7);
 		ad.addLast(8);
-		System.out.println(ad.get(1));
+		System.out.println(ad.get(5));
 		System.out.println(ad.get(7));
 	}
 
