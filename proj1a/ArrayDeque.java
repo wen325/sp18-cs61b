@@ -20,10 +20,10 @@ public class ArrayDeque<T> {
 			T[] a = (T[])new Object[capacity];
 			int front_end_length = items.length - sentinel_front;
 			int start_back_length = sentinel_back;
-			System.arraycopy(items, sentinel_front + 1, a, size - front_end_length, items.length  - sentinel_front -1);
-			System.arraycopy(items, 0, a, size -1 , sentinel_back );
+			System.arraycopy(items, sentinel_front + 1, a, size - front_end_length + 1, items.length  - sentinel_front -1);
+			System.arraycopy(items, 0, a, size , sentinel_back );
 			items = a;
-			sentinel_front = size - front_end_length - 1;
+			sentinel_front = size - front_end_length;
 			sentinel_back = size + 1;
 		}else{
 
