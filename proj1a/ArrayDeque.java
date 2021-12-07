@@ -37,8 +37,8 @@ public class ArrayDeque<T> {
 				a[i] = this.get(i);
 			}
 			items = a;
-			sentinel_front = 0;
-			sentinel_back = items.length - 1;
+			sentinel_front = 1;
+			sentinel_back = 0;
 		}
 	}
 
