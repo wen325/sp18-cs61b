@@ -38,9 +38,10 @@ public class ArrayDeque<T> {
 
 	/** Removes and returns the item at the front of the deque. If no such item exists, returns null. */
 	public T removeFirst(){
-		T x = get(0);
+		T x = items[sentinel_front + 1];
 		sentinel_front += 1;
-		items[sentinel_front - 1] = null;
+		items[sentinel_front] = null;
+		size = size - 1;
 		return x;
 	}
 
@@ -55,7 +56,8 @@ public class ArrayDeque<T> {
 	 * returns deleted item. */
 	public T removeLast() {
 		T x = items[sentinel_back - 1];
-		items[sentinel_back - 1] = null;
+		sentinel_back -= 1;
+		items[sentinel_back] = null;
 		size = size - 1;
 		return x;
 	}
