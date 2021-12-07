@@ -28,15 +28,12 @@ public class ArrayDeque<T> {
 
 	/** Returns true if deque is empty, false otherwise. */
 	public boolean isEmpty() {
-		if (items == null) {
-			return true;
-		}
-		return false;
+		return (items == null);
 	}
 
 	/** Prints the items in the deque from first to last, separated by a space. */
 	public void printDeque() {
-		for(int i = sentinel_front + 1; i< sentinel_back; i++) {
+		for(int i = 0; i< size; i++) {
 			System.out.print(get(i) + " ");
 		}
 	}
