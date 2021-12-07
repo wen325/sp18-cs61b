@@ -37,7 +37,7 @@ public class ArrayDeque<T> {
 				a[i] = this.get(i);
 			}
 			items = a;
-			sentinel_front = 1;
+			sentinel_front = size - 1;
 			sentinel_back = 0;
 		}
 	}
@@ -85,6 +85,9 @@ public class ArrayDeque<T> {
             sentinel_front += 1;
 		}
           size = size - 1;
+	    if (size == items.length/2) {        //deal with resize down
+		    resize(size);
+	    }
           return x;
 	}
 
@@ -117,7 +120,7 @@ public class ArrayDeque<T> {
 		size = size - 1;
 
 		if (size == items.length/2) {        //deal with resize down
-			resize(size/2);
+			resize(size);
 		}
 		return x;
 	}

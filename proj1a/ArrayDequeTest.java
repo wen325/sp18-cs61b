@@ -155,12 +155,33 @@ public class ArrayDequeTest {
 		ad.removeLast();
 	}
 
+	public static void resizeDownTest() {
+		ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
+		ad.addLast(1);
+		ad.addLast(2);
+		ad.addLast(3);
+		ad.addLast(4);
+		ad.addLast(5);
+		ad.addLast(6);
+		ad.addLast(7);
+		ad.addLast(8);
+		ad.removeFirst();
+		ad.removeLast();
+		ad.removeFirst();
+		ad.removeLast();
+		ad.printDeque();
+		ad.removeFirst();
+		ad.removeLast();
+		ad.removeFirst();
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
 //		resizeTest();
 //		getTest();
 //		isEmptyTest();
 //		removeEmptyTest();
-		d011Test();
+//		d011Test();
+		resizeDownTest();
 	}
 } 
