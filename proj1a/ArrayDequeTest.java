@@ -136,24 +136,22 @@ public class ArrayDequeTest {
 	public static void d011Test() {
 		ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
 		ad.addFirst(0);
-		ad.removeLast();
-		ad.addFirst(2);
+		ad.removeFirst();
+		ad.addLast(2);
 		ad.addFirst(3);
 		ad.addLast(4);
 		ad.addFirst(5);
 		ad.addLast(6);
 		ad.addFirst(7);
-		ad.addFirst(8);
-		ad.addLast(9);
-		ad.get(7);
+		ad.get(0);
 		ad.removeFirst();
+		ad.addFirst(10);
+		ad.addFirst(11);
+		ad.addFirst(12);
 		ad.removeFirst();
-		ad.get(1);
-		ad.removeFirst();
+		ad.addFirst(14);
 		ad.addLast(15);
-		ad.addFirst(16);
-		ad.addFirst(17);
-		ad.addLast(18);
+		ad.addLast(16);
 		ad.removeLast();
 	}
 

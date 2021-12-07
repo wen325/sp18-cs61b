@@ -30,7 +30,7 @@ public class ArrayDeque<T> {
 			}
 			items = a;
 			sentinel_front = capacity/4 - 1;
-			sentinel_back = capacity * 3/4 - 1;
+			sentinel_back = capacity * 3/4;
 		}else{
 
 		}
