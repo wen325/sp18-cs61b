@@ -59,15 +59,21 @@ public class ArrayDeque<T> {
 		size += 1;
 	}
 
-	/** Removes and returns the item at the front of the deque. If no such item exists, returns null. */
-	public T removeFirst() {
-		T x = items[sentinel_front + 1];
-		if (x == null){
-			return null;
+  /**
+   * Removes and returns the item at the front of the deque. If no such item exists, returns null.
+   */
+    public T removeFirst() {
+        if (this.size == 0) {
+            return null;
+        }
+        T x = get(this.size - 1);
+        if (sentinel_front == items.length - 1) {
+            sentinel_front = 0;
+            }else{
+            sentinel_front += 1;
 		}
-		sentinel_front += 1;
-		size = size - 1;
-		return x;
+          size = size - 1;
+          return x;
 	}
 
 	/** Inserts X into the back of the list. */
@@ -87,11 +93,15 @@ public class ArrayDeque<T> {
 	/** Deletes item from back of the list and
 	 * returns deleted item. */
 	public T removeLast() {
-		T x = items[sentinel_back - 1];
-		if (x == null) {
+		if (this.size == 0){
 			return null;
 		}
-		sentinel_back -= 1;
+		T x = get(this.size - 1);
+		if (sentinel_back == 0){
+			sentinel_back = items.length - 1;
+        }else{
+            sentinel_back -= 1;
+			}
 		size = size - 1;
 		return x;
 	}

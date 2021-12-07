@@ -124,6 +124,7 @@ public class ArrayDequeTest {
 		}
 	}
 
+	//** test isEmpty. */
 	public static void isEmptyTest() {
 		ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
 		System.out.println(ad.isEmpty());
@@ -131,12 +132,28 @@ public class ArrayDequeTest {
 		System.out.println(ad.isEmpty());
 	}
 
+	//** d011) AD-basic: get. Test */
+	public static void d011Test() {
+		ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
+		ad.addLast(0);
+		ad.addLast(1);
+		ad.get(0);
+		ad.get(1);
+		ad.addFirst(4);
+		ad.addFirst(5);
+		ad.addLast(6);
+		ad.get(2);
+		ad.removeFirst();
+		ad.addFirst(9);
+		ad.removeLast();
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
 //		resizeTest();
 //		getTest();
 //		isEmptyTest();
-		removeEmptyTest();
-
+//		removeEmptyTest();
+		d011Test();
 	}
 } 
