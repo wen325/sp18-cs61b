@@ -16,19 +16,26 @@ public class ArrayDeque<T> {
 
 	/** Resizes the underlying array to the target capacity. */
 	private void resize(int capacity){
-		T[] a = (T[])new Object[capacity];
-		int front_end_length = items.length - sentinel_front;
-		int start_back_length = sentinel_back;
-		System.arraycopy(items, sentinel_front + 1, a, size - front_end_length, items.length  - sentinel_front -1);
-		System.arraycopy(items, 0, a, size -1 , sentinel_back );
-		items = a;
-		sentinel_front = size - front_end_length - 1;
-		sentinel_back = size + 1;
+		if (capacity == size * 2) {
+			T[] a = (T[])new Object[capacity];
+			int front_end_length = items.length - sentinel_front;
+			int start_back_length = sentinel_back;
+			System.arraycopy(items, sentinel_front + 1, a, size - front_end_length, items.length  - sentinel_front -1);
+			System.arraycopy(items, 0, a, size -1 , sentinel_back );
+			items = a;
+			sentinel_front = size - front_end_length - 1;
+			sentinel_back = size + 1;
+		}else{
+
+		}
 	}
 
 	/** Returns true if deque is empty, false otherwise. */
 	public boolean isEmpty() {
-		return (items == null);
+		if (items == null) {
+            return true;
+        }
+        return false;
 	}
 
 	/** Prints the items in the deque from first to last, separated by a space. */
@@ -97,7 +104,7 @@ public class ArrayDeque<T> {
         if (i + sentinel_front + 1 < items.length) {
             return items[i + sentinel_front + 1];
 		}else{
-			return items[i + sentinel_front + 1 -items.length];
+			return items[i + sentinel_front + 1 - items.length];
         }
 	}
 

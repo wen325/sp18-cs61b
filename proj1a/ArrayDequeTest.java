@@ -99,6 +99,13 @@ public class ArrayDequeTest {
 		ad.addLast(8);
 		ad.addFirst(9);
 		ad.addLast(10);
+		ad.addFirst(8);
+		ad.addFirst(8);
+		ad.addFirst(8);
+		ad.addFirst(8);
+		ad.addFirst(8);
+		ad.addFirst(8);
+		ad.addFirst(12);
 		// should be empty
 
 	}
@@ -115,13 +122,13 @@ public class ArrayDequeTest {
 		ad.addLast(5);
 		ad.addLast(6);
 		ad.addLast(7);
-		System.out.println(ad.get(0));
-		System.out.println(ad.get(7));
+//		System.out.println(ad.get(0));
+//		System.out.println(ad.get(5));
 	}
 
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
-//		resizeTest();
-		getTest();
+		resizeTest();
+//		getTest();
 	}
 } 
