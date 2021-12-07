@@ -21,12 +21,12 @@ public class LinkedListDeque<T> {
     }
 
     /** Initialize the Deque with x */
-    public LinkedListDeque(T x) {
-        sentinel_front = new Deque(null, null);
-        sentinel_front.next = new Deque(x, null);
-        sentinel_back.next = new Deque(x, null);
-        size = 1;
-    }
+//    public LinkedListDeque(T x) {
+//        sentinel_front = new Deque(null, null);
+//        sentinel_front.next = new Deque(x, null);
+//        sentinel_back.next = new Deque(x, null);
+//        size = 1;
+//    }
 
     /**
      * gets the item at the given index, where 0 is the front, 1 is the next item
@@ -51,6 +51,9 @@ public class LinkedListDeque<T> {
 
     /** remove and return the item at the front; if no item exists, return null */
     public T removeFirst() {
+        if (sentinel_front.next == null){
+            return null;
+        }
         T item = sentinel_front.next.item;
         sentinel_front.next = sentinel_front.next.next;
         size -= 1;
