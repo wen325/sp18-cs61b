@@ -10,26 +10,25 @@ public class ArrayDeque<T> {
 	public ArrayDeque() {
 		items = (T[]) new Object[8];
 		sentinel_front = start;
-		sentinel_back = start;
+		sentinel_back = start + 1;
 		size = 0;
 	}
 
 	/** Resizes the underlying array to the target capacity. */
 	private void resize(int capacity){
 		T[] a = (T[])new Object[capacity];
-
 		int front_end_length = items.length - sentinel_front;
 		int start_back_length = sentinel_back;
-		System.arraycopy(items, sentinel_front, a, size - front_end_length , items.length  - sentinel_front);
-		System.arraycopy(items, 0, a, size + 1, sentinel_back );
+		System.arraycopy(items, sentinel_front + 1, a, size - front_end_length, items.length  - sentinel_front -1);
+		System.arraycopy(items, 0, a, size -1 , sentinel_back );
 		items = a;
-		sentinel_front = size - front_end_length;
+		sentinel_front = size - front_end_length - 1;
 		sentinel_back = size + 1;
 	}
 
 	/** Returns true if deque is empty, false otherwise. */
-	public boolean isEmpty(){
-		if (items == null){
+	public boolean isEmpty() {
+		if (items == null) {
 			return true;
 		}
 		return false;
@@ -37,23 +36,27 @@ public class ArrayDeque<T> {
 
 	/** Prints the items in the deque from first to last, separated by a space. */
 	public void printDeque(){
-		for(int i = sentinel_front + 1; i< sentinel_back; i++){
+		for(int i = sentinel_front + 1; i< sentinel_back; i++) {
 			System.out.print(get(i) + " ");
 		}
 	}
 
 	/** Inserts X into the front of the list. */
-	public void addFirst(T x){
-		if(size == items.length){
+	public void addFirst(T x) {
+		if(size == items.length) {
 			resize((size * 2));
 		}
 		items[sentinel_front] = x;
-		sentinel_front -= 1;
+		if (sentinel_front == 0){
+			sentinel_front = items.length -1;
+		}else{
+			sentinel_front -= 1;
+		}
 		size += 1;
 	}
 
 	/** Removes and returns the item at the front of the deque. If no such item exists, returns null. */
-	public T removeFirst(){
+	public T removeFirst() {
 		T x = items[sentinel_front + 1];
 		sentinel_front += 1;
 		items[sentinel_front] = null;
@@ -63,11 +66,15 @@ public class ArrayDeque<T> {
 
 	/** Inserts X into the back of the list. */
 	public void addLast(T x) {
-		if(size == items.length){
+		if (size == items.length){
 			resize((size * 2));
 		}
 		items[sentinel_back] = x;
-		sentinel_back += 1;
+		if (sentinel_back == items.length - 1){
+			sentinel_back = 0;
+		}else{
+			sentinel_back += 1;
+		}
 		size += 1;
 	}
 
