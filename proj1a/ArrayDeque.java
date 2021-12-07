@@ -24,7 +24,7 @@ public class ArrayDeque<T> {
 			System.arraycopy(items, 0, a, size , sentinel_back );
 			items = a;
 			sentinel_front = size - front_end_length;
-			sentinel_back = size + 1;
+			sentinel_back = size + sentinel_back;
 		}else{
 
 		}

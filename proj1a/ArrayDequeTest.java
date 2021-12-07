@@ -88,28 +88,35 @@ public class ArrayDequeTest {
 	//** Test Array Resize function.* //
 	public static void resizeTest() {
 		System.out.println("Running resize test.");
-		ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
-		ad.addFirst(1);
-		ad.addFirst(2);
-		ad.addFirst(3);
-		ad.addLast(4);
-		ad.addLast(5);
-		ad.addLast(6);
-		ad.addLast(7);
-		ad.addFirst(8);
-//		System.out.println(ad.get(0));
-//		System.out.println(ad.get(7));
-		ad.addFirst(9);
-		ad.addLast(10);
-//		ad.addFirst(8);
-//		ad.addFirst(8);
-//		ad.addFirst(8);
-//		ad.addFirst(8);
-//		ad.addFirst(8);
-//		ad.addFirst(8);
-//		ad.addFirst(12);
-		// should be empty
+		ArrayDeque<Integer> ad_1 = new ArrayDeque<Integer>();
+		ad_1.addFirst(1);
+		ad_1.addFirst(2);
+		ad_1.addFirst(3);
+		ad_1.addFirst(4);
+		ad_1.addFirst(5);
+		ad_1.addFirst(6);
+		ad_1.addFirst(7);
+		ad_1.addFirst(8);
+		ad_1.addFirst(9);
+		ad_1.addLast(10);
+		for (int i = 0; i< ad_1.size(); i++){
+			System.out.print(ad_1.get(i));
+		}
 
+		ArrayDeque<Integer> ad_2 = new ArrayDeque<Integer>();
+		ad_2.addLast(1);
+		ad_2.addLast(2);
+		ad_2.addLast(3);
+		ad_2.addLast(4);
+		ad_2.addLast(5);
+		ad_2.addLast(6);
+		ad_2.addLast(7);
+		ad_2.addLast(8);
+		ad_2.addLast(9);
+		ad_2.addFirst(10);
+		for (int i = 0; i< ad_2.size(); i++){
+			System.out.print(ad_2.get(i));
+		}
 	}
 
 	//** test get items at index i */
@@ -129,9 +136,17 @@ public class ArrayDequeTest {
 		}
 	}
 
+	public static void isEmptyTest() {
+		ArrayDeque<Integer> ad = new ArrayDeque<Integer>();
+		System.out.println(ad.isEmpty());
+		ad.addLast(1);
+		System.out.println(ad.isEmpty());
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
 //		resizeTest();
-		getTest();
+//		getTest();
+		isEmptyTest();
 	}
 } 
