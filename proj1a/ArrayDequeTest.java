@@ -124,13 +124,14 @@ public class ArrayDequeTest {
 		ad.addLast(5);
 		ad.addLast(6);
 		ad.addLast(7);
-		System.out.println(ad.get(0));
-		System.out.println(ad.get(5));
+		for(int i = 0; i < 8; i++){
+		System.out.print(ad.get(i));
+		}
 	}
 
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
-		resizeTest();
-//		getTest();
+//		resizeTest();
+		getTest();
 	}
 } 

@@ -32,7 +32,7 @@ public class ArrayDeque<T> {
 
 	/** Returns true if deque is empty, false otherwise. */
 	public boolean isEmpty() {
-		if (items == null) {
+		if (get(0) == null) {
             return true;
         }
         return false;
@@ -66,7 +66,6 @@ public class ArrayDeque<T> {
 			return null;
 		}
 		sentinel_front += 1;
-		items[sentinel_front] = null;
 		size = size - 1;
 		return x;
 	}
@@ -93,7 +92,6 @@ public class ArrayDeque<T> {
 			return null;
 		}
 		sentinel_back -= 1;
-		items[sentinel_back] = null;
 		size = size - 1;
 		return x;
 	}
