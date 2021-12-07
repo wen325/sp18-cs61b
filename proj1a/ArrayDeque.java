@@ -32,7 +32,13 @@ public class ArrayDeque<T> {
 			sentinel_front = capacity/4 - 1;
 			sentinel_back = capacity * 3/4;
 		}else{
-
+			T[] a = (T[])new Object[capacity];
+			for (int i = 0; i < size; i++) {
+				a[i] = this.get(i);
+			}
+			items = a;
+			sentinel_front = 0;
+			sentinel_back = items.length - 1;
 		}
 	}
 
@@ -54,10 +60,10 @@ public class ArrayDeque<T> {
 	/** Inserts X into the front of the list. */
 	public void addFirst(T x) {
 		if(size == items.length) {
-			resize((size * 2));
+			resize(size * 2);
 		}
 		items[sentinel_front] = x;
-		if (sentinel_front == 0){
+		if (sentinel_front == 0) {
 			sentinel_front = items.length -1;
 		}else{
 			sentinel_front -= 1;
@@ -85,7 +91,7 @@ public class ArrayDeque<T> {
 	/** Inserts X into the back of the list. */
 	public void addLast(T x) {
 		if (size == items.length) {
-			resize((size * 2));
+			resize(size * 2);
 		}
 		items[sentinel_back] = x;
 		if (sentinel_back == items.length - 1) {
@@ -99,16 +105,20 @@ public class ArrayDeque<T> {
 	/** Deletes item from back of the list and
 	 * returns deleted item. */
 	public T removeLast() {
-		if (this.size == 0){
+		if (this.size == 0) {
 			return null;
 		}
 		T x = get(this.size - 1);
-		if (sentinel_back == 0){
+		if (sentinel_back == 0) {
 			sentinel_back = items.length - 1;
         }else{
             sentinel_back -= 1;
 			}
 		size = size - 1;
+
+		if (size == items.length/2) {        //deal with resize down
+			resize(size/2);
+		}
 		return x;
 	}
 
