@@ -20,9 +20,11 @@ public class ArrayDeque<T> {
 
 		int front_end_length = items.length - sentinel_front;
 		int start_back_length = sentinel_back;
-		System.arraycopy(items, sentinel_front, a, front_end_length , items.length  - sentinel_front);
-		System.arraycopy(items, 0, a, start_back_length, sentinel_back );
+		System.arraycopy(items, sentinel_front, a, size - front_end_length , items.length  - sentinel_front);
+		System.arraycopy(items, 0, a, size + 1, sentinel_back );
 		items = a;
+		sentinel_front = size - front_end_length;
+		sentinel_back = size + 1;
 	}
 
 	/** Returns true if deque is empty, false otherwise. */
