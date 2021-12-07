@@ -32,7 +32,7 @@ public class ArrayDeque<T> {
 
 	/** Returns true if deque is empty, false otherwise. */
 	public boolean isEmpty() {
-		if (get(0) == null) {
+		if (size() == 0) {
             return true;
         }
         return false;
@@ -66,7 +66,7 @@ public class ArrayDeque<T> {
         if (this.size == 0) {
             return null;
         }
-        T x = get(this.size - 1);
+        T x = get(0);
         if (sentinel_front == items.length - 1) {
             sentinel_front = 0;
             }else{
