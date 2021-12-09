@@ -84,9 +84,49 @@ public class LinkedListDequeTest {
 //		*/
 	}
 
+	//** addFirst and addLast Test */
+	public static void addTest(){
+		LinkedListDeque<Integer> dll = new LinkedListDeque<Integer>();
+		dll.addFirst(1);
+		dll.addFirst(2);
+		dll.addFirst(3);
+		dll.addFirst(4);
+		dll.addFirst(5);
+		dll.addLast(6);
+		dll.addLast(7);
+		dll.printDeque();
+	}
+
+	//** get item and print Deque test */
+	public static void getTest(){
+		LinkedListDeque<Integer> dll = new LinkedListDeque<Integer>();
+		dll.addFirst(1);
+		dll.addFirst(2);
+		dll.addFirst(3);
+		dll.addLast(4);
+		dll.addLast(5);
+		dll.addLast(6);
+		System.out.println(dll.get(6));
+	}
+
+	//** Removes and returns the item at the front of the deque. If no such item exists, returns null. */
+	public static void removeFirstTest(){
+		LinkedListDeque<Integer> dll = new LinkedListDeque<Integer>();
+		dll.addFirst(1);
+		dll.addFirst(2);
+		dll.addFirst(3);
+		dll.removeFirst();
+		dll.removeFirst();
+		int k = dll.removeFirst();
+		System.out.println(k);
+	}
+
 	public static void main(String[] args) {
-		System.out.println("Running tests.\n");
-		addIsEmptySizeTest();
-		addRemoveTest();
+//		System.out.println("Running tests.\n");
+//		addIsEmptySizeTest();
+//		addRemoveTest();
+//		addTest();
+//		getTest();
+		removeFirstTest();
 	}
 } 
