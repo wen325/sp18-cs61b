@@ -121,12 +121,20 @@ public class LinkedListDequeTest {
 		System.out.println(k);
 	}
 
+	public static void isEmptyTest(){
+		LinkedListDeque<Integer> dll = new LinkedListDeque<Integer>();
+		dll.addFirst(1);
+		dll.removeFirst();
+		dll.isEmpty();
+	}
+
 	public static void main(String[] args) {
 //		System.out.println("Running tests.\n");
 //		addIsEmptySizeTest();
 //		addRemoveTest();
 //		addTest();
 //		getTest();
-		removeFirstTest();
+//		removeFirstTest();
+		isEmptyTest();
 	}
 } 
