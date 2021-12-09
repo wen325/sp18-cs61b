@@ -124,7 +124,7 @@ public class LinkedListDequeTest {
 	public static void isEmptyTest(){
 		LinkedListDeque<Integer> dll = new LinkedListDeque<Integer>();
 		dll.addFirst(1);
-		dll.removeFirst();
+		dll.addFirst(0);
 		dll.isEmpty();
 	}
 

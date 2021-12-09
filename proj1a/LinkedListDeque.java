@@ -83,7 +83,7 @@ public class LinkedListDeque<T> {
 
     /** Returns true if deque is empty, false otherwise. */
     public boolean isEmpty() {
-        return (sentinel.next != null);
+        return (sentinel.next == sentinel);
     }
 
     /** Prints the items in the deque from first to last, separated by space. */
