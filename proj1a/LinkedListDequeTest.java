@@ -133,15 +133,15 @@ public class LinkedListDequeTest {
 	public static void getRecursiveTest(){
 		LinkedListDeque<Integer> dll = new LinkedListDeque<Integer>();
 		dll.addFirst(1);
-		dll.addFirst(2);
-		dll.addFirst(3);
-		dll.addLast(4);
-		dll.addLast(5);
-		dll.addLast(6);
-		int k = dll.getRecursive(0);
-		k = dll.getRecursive(1);
-		k = dll.getRecursive(2);
-		k = dll.getRecursive(7);
+		dll.removeLast();
+		dll.addLast(3);
+		dll.addFirst(4);
+		dll.getRecursive(0);
+		dll.removeLast();
+		dll.addLast(7);
+		dll.addFirst(8);
+		dll.addLast(9);
+		int k =dll.getRecursive(3);
 	}
 
 	public static void main(String[] args) {

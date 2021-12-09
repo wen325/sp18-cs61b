@@ -106,13 +106,13 @@ public class LinkedListDeque<T> {
         return getRecursivehelper(sentinel.next.next, index - 1);
     }
 
-    public T getRecursivehelper(Deque p, int index){
-        if (p.next == sentinel){
-            return null;
-        }
+    private T getRecursivehelper(Deque p, int index){
         if (index == 0){
             return p.item;
-        }else{
+        }
+        if (p.next == sentinel){
+            return null;
+        } else{
         return getRecursivehelper(p.next, index - 1);
         }
     }
