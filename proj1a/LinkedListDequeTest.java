@@ -121,11 +121,27 @@ public class LinkedListDequeTest {
 		System.out.println(k);
 	}
 
+	//** test isEmpty */
 	public static void isEmptyTest(){
 		LinkedListDeque<Integer> dll = new LinkedListDeque<Integer>();
 		dll.addFirst(1);
 		dll.addFirst(0);
 		dll.isEmpty();
+	}
+
+	//** get item RecursiveTest */
+	public static void getRecursiveTest(){
+		LinkedListDeque<Integer> dll = new LinkedListDeque<Integer>();
+		dll.addFirst(1);
+		dll.addFirst(2);
+		dll.addFirst(3);
+		dll.addLast(4);
+		dll.addLast(5);
+		dll.addLast(6);
+		int k = dll.getRecursive(0);
+		k = dll.getRecursive(1);
+		k = dll.getRecursive(2);
+		k = dll.getRecursive(7);
 	}
 
 	public static void main(String[] args) {
@@ -135,6 +151,7 @@ public class LinkedListDequeTest {
 //		addTest();
 //		getTest();
 //		removeFirstTest();
-		isEmptyTest();
+//		isEmptyTest();
+		getRecursiveTest();
 	}
 } 

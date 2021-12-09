@@ -97,11 +97,23 @@ public class LinkedListDeque<T> {
      *  use resursion;
      */
     public T getRecursive(int index){
+        if (sentinel.next == sentinel) {
+            return null;
+            }
         if(index == 0){
             return sentinel.next.item;
-            }
-//        T p = new T(sentinel.next, sentinel.next.item, sentinel.next.next);
-//        return p.getRecuresive(index - 1);
-        return null;
+        }
+        return getRecursivehelper(sentinel.next.next, index - 1);
+    }
+
+    public T getRecursivehelper(Deque p, int index){
+        if (p.next == sentinel){
+            return null;
+        }
+        if (index == 0){
+            return p.item;
+        }else{
+        return getRecursivehelper(p.next, index - 1);
+        }
     }
 }
