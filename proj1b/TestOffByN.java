@@ -5,7 +5,7 @@ public class TestOffByN {
 	//    /*
 	// You must use this CharacterComparator and not instantiate
 	// new ones, or the autograder might be upset.
-	static CharacterComparator OffByN = new OffByN();
+	static CharacterComparator OffByN = new OffByN(3);
 
 	// Your tests go here.
 	// Uncomment this class once you've created your CharacterComparator interface and OffByOne class. **/
