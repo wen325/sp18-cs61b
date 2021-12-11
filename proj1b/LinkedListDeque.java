@@ -1,0 +1,127 @@
+public class LinkedListDeque<T> implements Deque<T>{
+    private Deque sentinel;
+    private int size;
+
+    private class Deque {
+        public Deque prev;
+        public T item;
+        public Deque next;
+
+        public Deque(Deque m, T i,Deque n) {
+            prev = m;
+            item = i;
+            next = n;
+        }
+    }
+
+    /** Initialize the null Deque */
+    public LinkedListDeque() {
+        sentinel = new Deque(null, null, null);
+        sentinel.prev = sentinel;
+        sentinel.next = sentinel;
+        size = 0;
+    }
+
+    /**
+     * gets the item at the given index, where 0 is the front, 1 is the next item
+     */
+    @Override
+    public T get(int index) {
+        Deque p = sentinel.next;
+        while (index > 0) {
+            p = p.next;
+            if(p == null){
+                return null;
+            }
+            index -= 1;
+        }
+        return p.item;
+    }
+
+    /** add x to the First */
+    @Override
+    public void addFirst(T x) {
+      Deque p = new Deque(sentinel, x, sentinel.next);
+      sentinel.next.prev = p;
+      sentinel.next = p;
+        size += 1;
+    }
+
+    /** remove and return the item at the front; if no item exists, return null */
+    @Override
+    public T removeFirst() {
+        if (sentinel.next == sentinel){
+            return null;
+        }
+        T item = sentinel.next.item;
+        sentinel.next = sentinel.next.next;
+        sentinel.next.prev = sentinel;
+        size -= 1;
+        return item;
+    }
+
+    /** add x to the Last */
+    @Override
+    public void addLast(T x) {
+        Deque p = new Deque(sentinel.prev, x, sentinel);
+        sentinel.prev.next = p;
+        sentinel.prev = p;
+        size += 1;
+    }
+
+    /** remove and return the item at the back; if no item exists, return null */
+    @Override
+    public T removeLast(){
+        if (sentinel.prev == sentinel){
+            return null;
+        }
+        T item = sentinel.prev.item;
+        sentinel.prev = sentinel.prev.prev;
+        sentinel.prev.next = sentinel;
+        size -= 1;
+        return item;
+    }
+    /** return Deque length */
+    @Override
+    public int size(){
+        return size;
+    }
+
+    /** Returns true if deque is empty, false otherwise. */
+    @Override
+    public boolean isEmpty() {
+        return (sentinel.next == sentinel);
+    }
+
+    /** Prints the items in the deque from first to last, separated by space. */
+    @Override
+    public void printDeque(){
+        for (int i = 0; i < size; i++){
+            System.out.print(get(i)+" ");
+        }
+    }
+
+    /** Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth.
+     *  use resursion;
+     */
+    public T getRecursive(int index){
+        if (sentinel.next == sentinel) {
+            return null;
+            }
+        if(index == 0){
+            return sentinel.next.item;
+        }
+        return getRecursivehelper(sentinel.next.next, index - 1);
+    }
+
+    private T getRecursivehelper(Deque p, int index){
+        if (index == 0){
+            return p.item;
+        }
+        if (p.next == sentinel){
+            return null;
+        } else{
+        return getRecursivehelper(p.next, index - 1);
+        }
+    }
+}
