@@ -10,7 +10,7 @@ public class TestArrayDequeGold {
 	public void testPart1(){
 		StudentArrayDeque<Integer> sad1 = new StudentArrayDeque<>();
 		ArrayDequeSolution<Integer> sad2 = new ArrayDequeSolution<>();
-		String message = "\n";
+		String message = "";
 		for (int i = 0; i < 1000; i += 1) {
 			double numberBetweenZeroAndOne = StdRandom.uniform();
 			int numberBetweenZeroAndNine = StdRandom.uniform(0, 10);
