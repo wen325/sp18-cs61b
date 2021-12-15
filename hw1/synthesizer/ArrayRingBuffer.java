@@ -94,17 +94,17 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         return new BufferIterator();
     }
         private class BufferIterator implements Iterator<T>{
-            private int BuffPosition;
+            private int BuffPosition = 0;
 
-            public BufferIterator(){
-                BuffPosition = first;
-            }
+            @Override
             public boolean hasNext () {
                 return (fillCount() != 0);
             }
+            @Override
             public T next () {
-                T returnItem = peek();
-                return returnItem;
+                T nextItem = peek();
+                BuffPosition += 1;
+                return nextItem;
             }
         }
 
