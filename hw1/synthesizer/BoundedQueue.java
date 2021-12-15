@@ -20,5 +20,5 @@ public interface BoundedQueue<T> extends Iterable<T> {
 		return fillCount() == capacity();
 	}
 
-	Iterator<T> iterator();
+	Iterator iterator();
 }

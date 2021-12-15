@@ -21,6 +21,10 @@ public class GuitarString {
         //       Your buffer should be initially filled with zeros.
         int capacity = (int) Math.round(SR/frequency);
         buffer = new ArrayRingBuffer(capacity);
+
+        while(!buffer.isFull()){
+            buffer.enqueue(0.0);
+        }
     }
 
 
@@ -56,7 +60,6 @@ public class GuitarString {
     /* Return the double at the front of the buffer. */
     public double sample() {
         // TODO: Return the correct thing.
-        double toReturn = buffer.peek();
-        return toReturn;
+        return buffer.peek();
     }
 }
