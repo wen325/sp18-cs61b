@@ -12,7 +12,7 @@ public class MapGenerator {
 		int WIDTH = digitalWorld.length;
 		int HEIGHT = digitalWorld[0].length;
 		TERenderer ter = new TERenderer();
-		ter.initialize(WIDTH, HEIGHT);
+//		ter.initialize(WIDTH, HEIGHT);
 
 		TETile[][] world = new TETile[WIDTH][HEIGHT];
 		int roomNum = RandomUtils.uniform(random, 10, 20);
