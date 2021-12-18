@@ -2,30 +2,24 @@ package byog.Core;
 
 import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
-import byog.TileEngine.Tileset;
-import org.junit.Test;
-import byog.Core.RandomUtils;
 
 import java.util.Random;
 
+public class MapGenerator {
 
 
-public class MapTest {
-	private static final int WIDTH = 80;
-	private static final int HEIGHT = 30;
-	static Random random = new Random();
-
-	public static void main(String[] args){
+	public static TETile[][] Generator(int[][] digitalWorld , Random random){
+		int WIDTH = digitalWorld.length;
+		int HEIGHT = digitalWorld[0].length;
 		TERenderer ter = new TERenderer();
 		ter.initialize(WIDTH, HEIGHT);
 
-		int[][] digitalWorld = new int[WIDTH][HEIGHT];
 		TETile[][] world = new TETile[WIDTH][HEIGHT];
-		int Roomnum = RandomUtils.uniform(random, 10, 20);
-		Position[] p = new Position[Roomnum];
+		int roomNum = RandomUtils.uniform(random, 10, 20);
+		Position[] p = new Position[roomNum];
 		int width;
 		int height;
-		for (int i = 0; i < Roomnum; i++) {
+		for (int i = 0; i < roomNum; i++) {
 			do {
 				width = RandomUtils.uniform(random, 3, 6);
 				height = RandomUtils.uniform(random, 3, 6);
@@ -34,7 +28,7 @@ public class MapTest {
 			Room r1 = new Room(digitalWorld, p[i], width, height);
 		}
 
-		for (int i = 0; i < Roomnum - 1; i++) {
+		for (int i = 0; i < roomNum - 1; i++) {
 			Hallway h1 = new Hallway(digitalWorld, p[i], p[i + 1]);
 		}
 
@@ -51,5 +45,7 @@ public class MapTest {
 
 		Helper.addTile(world, digitalWorld);
 		ter.renderFrame(world);
+
+		return world;
 	}
 }
