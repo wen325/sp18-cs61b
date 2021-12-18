@@ -11,7 +11,7 @@ public class MapGenerator {
 	public static TETile[][] Generator(int[][] digitalWorld , Random random){
 		int WIDTH = digitalWorld.length;
 		int HEIGHT = digitalWorld[0].length;
-		TERenderer ter = new TERenderer();
+//		TERenderer ter = new TERenderer();
 //		ter.initialize(WIDTH, HEIGHT);
 
 		TETile[][] world = new TETile[WIDTH][HEIGHT];
@@ -44,7 +44,7 @@ public class MapGenerator {
 		}while (Lockdoor);
 
 		Helper.addTile(world, digitalWorld);
-		ter.renderFrame(world);
+//		ter.renderFrame(world);
 
 		return world;
 	}
