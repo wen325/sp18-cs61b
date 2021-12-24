@@ -111,7 +111,7 @@ public class Game {
                 case 'q':
                 case 'Q':
                     Helper.saveWorld(world);
-                    System.exit(0);
+//                    System.exit(0);
                     return world;
                 case ':':
                     break;
@@ -121,6 +121,7 @@ public class Game {
 //                    ter.renderFrame(world);
             }
         }
+        Helper.saveWorld(world);
 //        ter.initialize(WIDTH, HEIGHT);
 //        ter.renderFrame(world);
         return world;
