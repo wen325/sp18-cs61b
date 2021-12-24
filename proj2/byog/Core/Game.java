@@ -111,8 +111,7 @@ public class Game {
                 case 'Q':
                     Helper.saveWorld(world);
 //                    System.exit(0);
-                    i = inputSeries.length;
-                    break;
+                    return world;
                 case ':':
                     break;
                 default:
