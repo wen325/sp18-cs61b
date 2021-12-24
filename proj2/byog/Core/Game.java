@@ -90,7 +90,7 @@ public class Game {
         // drawn if the same inputs had been given to playWithKeyboard().
         char[] inputSeries = input.toCharArray();
         TETile[][]  world = new TETile[0][];
-        for (int i = 1; i < 1; i++) {
+        for (int i = 0; i < inputSeries.length; i++) {
             switch (inputSeries[i]) {
                 case 'n':
                 case 'N':
@@ -111,7 +111,7 @@ public class Game {
                 case 'q':
                 case 'Q':
                     Helper.saveWorld(world);
-//                    System.exit(0);
+                    System.exit(0);
                     return world;
                 case ':':
                     break;
