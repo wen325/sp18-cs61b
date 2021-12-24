@@ -96,7 +96,7 @@ public class Game {
                 case 'N':
                     long seed = 0;
                     while (inputSeries[i+1] != 's' && inputSeries[i+1] != 'S') {
-                        seed = seed * 10 + Integer.parseInt(String.valueOf(inputSeries[i+1]));
+                        seed = seed * 10 + Long.parseLong(String.valueOf(inputSeries[i+1]));
                         i++;
                     }
                     i++;
@@ -121,8 +121,8 @@ public class Game {
 //                    ter.renderFrame(world);
             }
         }
-//        ter.initialize(WIDTH, HEIGHT);
-//        ter.renderFrame(world);
+        ter.initialize(WIDTH, HEIGHT);
+        ter.renderFrame(world);
         return world;
     }
 }
