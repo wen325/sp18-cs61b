@@ -111,6 +111,7 @@ public class Game {
                 case 'Q':
                     Helper.saveWorld(world);
 //                    System.exit(0);
+                    i = inputSeries.length;
                     break;
                 default:
                     Helper.playerMove(digitalWorld, inputSeries[i]);
@@ -118,8 +119,8 @@ public class Game {
 //                    ter.renderFrame(world);
             }
         }
-//        ter.initialize(WIDTH, HEIGHT);
-//        ter.renderFrame(world);
+        ter.initialize(WIDTH, HEIGHT);
+        ter.renderFrame(world);
         return world;
     }
 }
