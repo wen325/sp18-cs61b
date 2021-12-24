@@ -113,14 +113,16 @@ public class Game {
 //                    System.exit(0);
                     i = inputSeries.length;
                     break;
+                case ':':
+                    break;
                 default:
                     Helper.playerMove(digitalWorld, inputSeries[i]);
                     Helper.addTile(world, digitalWorld);
 //                    ter.renderFrame(world);
             }
         }
-//        ter.initialize(WIDTH, HEIGHT);
-//        ter.renderFrame(world);
+        ter.initialize(WIDTH, HEIGHT);
+        ter.renderFrame(world);
         return world;
     }
 }
