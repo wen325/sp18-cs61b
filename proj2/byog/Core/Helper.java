@@ -142,7 +142,7 @@ public class Helper{
 
 	//** save the current world w */
 	public static void saveWorld(TETile[][] world) {
-		File f = new File("./phase2world.ser");
+		File f = new File("./phase2world.txt");
 		try {
 			if (!f.exists()) {
 				f.createNewFile();
@@ -162,7 +162,7 @@ public class Helper{
 
 	//** load world from file */
 	public static TETile[][] loadWorld() {
-		File f = new File("./phase2world.ser");
+		File f = new File("./phase2world.txt");
 		if (f.exists()) {
 			try {
 				FileInputStream fs = new FileInputStream(f);
