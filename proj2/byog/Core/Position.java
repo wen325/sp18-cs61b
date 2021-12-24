@@ -1,5 +1,7 @@
 package byog.Core;
 
+
+//** store the bottom left of room */
 public class Position {
 
 		public int x;

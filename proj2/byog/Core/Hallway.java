@@ -2,7 +2,7 @@ package byog.Core;
 
 public class Hallway {
 
-
+	//** Use floors to connect two rooms' position by Hallways */
 	public Hallway(int[][] digitalWorld, Position p1, Position p2) {
 		if (p1.x == p2.x) {    // connect by vertical Hallway
 			for (int i = Math.min(p1.y, p2.y); i < Math.max(p1.y, p2.y); i++) {

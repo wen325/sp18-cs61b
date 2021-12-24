@@ -2,7 +2,9 @@ package byog.Core;
 
 import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
+import edu.princeton.cs.introcs.StdDraw;
 
+import java.awt.*;
 import java.util.Random;
 
 public class Game {
@@ -10,11 +12,64 @@ public class Game {
     /* Feel free to change the width and height. */
     public static final int WIDTH = 80;
     public static final int HEIGHT = 30;
+    public static int[][] digitalWorld = new int[WIDTH][HEIGHT];
+    public static final int hudheight = 4;
 
+    public static long seed;
     /**
      * Method used for playing a fresh game. The game should start from the main menu.
      */
     public void playWithKeyboard() {
+        StdDraw.enableDoubleBuffering();
+        StdDraw.setPenColor(StdDraw.WHITE);
+        Font smallFont = new Font("Monaco", Font.BOLD, 20);
+        StdDraw.setFont(smallFont);
+
+        Draw.menu();
+        TETile[][] world = new TETile[0][];
+        String info = "";
+
+        while (true) {
+            if (StdDraw.hasNextKeyTyped()) {
+                char c = StdDraw.nextKeyTyped();
+                Random random;
+                switch (c) {
+                    case 'n':
+                    case 'N':
+                        seed = Draw.seedInput();
+                        random = new Random(seed);
+                        ter.initialize(WIDTH, HEIGHT + hudheight);
+                        world = MapGenerator.Generator(digitalWorld, random);
+                        ter.renderFrame(world);
+                        Draw.Hud(WIDTH, HEIGHT + hudheight, info);
+                        break;
+                    case 'l':
+                    case 'L':
+                        ter.initialize(WIDTH, HEIGHT);
+                        world = Helper.loadWorld();
+                        ter.renderFrame(world);
+                        digitalWorld = Helper.getDigitalWorld(world);
+                        break;
+                    case 'q':
+                    case 'Q':
+                        Helper.saveWorld(world);
+                        System.exit(0);
+                        break;
+                    default:
+                         Helper.playerMove(digitalWorld, c);
+                         Helper.addTile(world, digitalWorld);
+                         ter.renderFrame(world);
+                         Draw.Hud(WIDTH, HEIGHT + hudheight, info);
+                }
+            }
+            if(StdDraw.isMousePressed()){
+                int mouseX = (int) StdDraw.mouseX();
+                int mouseY = (int) StdDraw.mouseY();
+                info = Draw.mousePressed(world, mouseX, mouseY);
+                ter.renderFrame(world);
+                Draw.Hud(WIDTH, HEIGHT + hudheight, info);
+            }
+        }
     }
 
     /**
@@ -35,7 +90,10 @@ public class Game {
         // drawn if the same inputs had been given to playWithKeyboard().
         long SEED = Long.parseLong(input.replaceAll("[^0-9]",""));
         Random random = new Random(SEED);
-        int[][] digitalWorld = new int[WIDTH][HEIGHT];
-        return MapGenerator.Generator(digitalWorld , random);
+
+        ter.initialize(WIDTH, HEIGHT);
+        TETile[][]  world = MapGenerator.Generator(digitalWorld , random);
+        ter.renderFrame(world);
+        return world;
     }
 }
