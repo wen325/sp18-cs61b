@@ -90,11 +90,11 @@ public class Game {
         // drawn if the same inputs had been given to playWithKeyboard().
         char[] inputSeries = input.toCharArray();
         TETile[][]  world = new TETile[0][];
-        for (int i = 1; i < 1; i++) {
+        for (int i = 0; i < inputSeries.length; i++) {
             switch (inputSeries[i]) {
                 case 'n':
                 case 'N':
-                    int seed = 0;
+                    long seed = 0;
                     while (inputSeries[i+1] != 's' && inputSeries[i+1] != 'S') {
                         seed = seed * 10 + Integer.parseInt(String.valueOf(inputSeries[i+1]));
                         i++;
