@@ -99,6 +99,7 @@ public class Game {
                         seed = seed * 10 + Integer.parseInt(String.valueOf(inputSeries[i+1]));
                         i++;
                     }
+                    i++;
                     Random random = new Random(seed);
                     world = MapGenerator.Generator(digitalWorld, random);
                     break;
