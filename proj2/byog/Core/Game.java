@@ -88,12 +88,38 @@ public class Game {
         // TODO: Fill out this method to run the game using the input passed in,
         // and return a 2D tile representation of the world that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
-        long SEED = Long.parseLong(input.replaceAll("[^0-9]",""));
-        Random random = new Random(SEED);
-
-        ter.initialize(WIDTH, HEIGHT);
-        TETile[][]  world = MapGenerator.Generator(digitalWorld , random);
-        ter.renderFrame(world);
+        char[] inputSeries = input.toCharArray();
+        TETile[][]  world = new TETile[0][];
+        for (int i = 0; i < inputSeries.length; i++) {
+            switch (inputSeries[i]) {
+                case 'n':
+                case 'N':
+                    int seed = 0;
+                    while (inputSeries[i+1] != 's' && inputSeries[i+1] != 'S') {
+                        seed = seed * 10 + Integer.parseInt(String.valueOf(inputSeries[i+1]));
+                        i++;
+                    }
+                    Random random = new Random(seed);
+                    world = MapGenerator.Generator(digitalWorld, random);
+                    break;
+                case 'l':
+                case 'L':
+                    world = Helper.loadWorld();
+                    digitalWorld = Helper.getDigitalWorld(world);
+                    break;
+                case 'q':
+                case 'Q':
+                    Helper.saveWorld(world);
+                    System.exit(0);
+                    break;
+                default:
+                    Helper.playerMove(digitalWorld, inputSeries[i]);
+//                    Helper.addTile(world, digitalWorld);
+//                    ter.renderFrame(world);
+            }
+        }
+//        ter.initialize(WIDTH, HEIGHT);
+//        ter.renderFrame(world);
         return world;
     }
 }
