@@ -110,11 +110,11 @@ public class Game {
                 case 'q':
                 case 'Q':
                     Helper.saveWorld(world);
-                    System.exit(0);
+//                    System.exit(0);
                     break;
                 default:
                     Helper.playerMove(digitalWorld, inputSeries[i]);
-//                    Helper.addTile(world, digitalWorld);
+                    Helper.addTile(world, digitalWorld);
 //                    ter.renderFrame(world);
             }
         }
