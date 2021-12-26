@@ -98,7 +98,14 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      * UnsupportedOperationException. */
     @Override
     public V remove(K key) {
-        throw new UnsupportedOperationException();
+        if (key == null) throw new IllegalArgumentException("argument to delete() is null");
+
+        int i = hash(key);
+        if (buckets[i].containsKey(key)) {
+            size--;
+        }
+        buckets[i].remove(key);
+        return buckets[i].get(key);
     }
 
     /* Removes the entry for the specified key only if it is currently mapped to
