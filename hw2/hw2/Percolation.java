@@ -5,12 +5,12 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 public class Percolation {
 
 	//** use two grid to avoid backwash *//
-	public WeightedQuickUnionUF grid, gridNoBottom;
-	public boolean[][] openArray;
-	public int N;
-	public int virtualTop = 0;
-	public int virtualBottom;
-	public int count;
+	private WeightedQuickUnionUF grid, gridNoBottom;
+	private boolean[][] openArray;
+	private int N;
+	private int virtualTop = 0;
+	private int virtualBottom;
+	private int count;
 
 	// create N-by-N grid, with all sites initially blocked
 	public Percolation(int N) {
