@@ -18,7 +18,7 @@ public class OomageTestUtility {
             numInBucket[bucketNumber] += 1;
         }
         for (int numPerBucket : numInBucket) {
-            if (numPerBucket < oomages.size() / 50 || numPerBucket > oomages.size() / 2.5) {
+            if (numPerBucket <= oomages.size() / 50 || numPerBucket >= oomages.size() / 2.5) {
                 return false;
             }
         }
