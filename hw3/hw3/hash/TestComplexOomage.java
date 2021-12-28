@@ -43,12 +43,11 @@ public class TestComplexOomage {
 
         // Your code here.
         int N = 30;
-        ArrayList<Integer> params = new ArrayList<>();
-        for (int i = 0; i < N; i += 1) {
-            params.add(5 * i);
-
-        }
         for (int i = 0; i < N; i++) {
+            ArrayList<Integer> params = new ArrayList<>();
+            for (int j = 0; j < i; j += 1) {
+                params.add(5 * j);
+            }
             deadlyList.add(new ComplexOomage(params));
         }
 
