@@ -42,7 +42,7 @@ public class TestComplexOomage {
         List<Oomage> deadlyList = new ArrayList<>();
 
         // Your code here.
-        int N = 30;
+        int N = 50;
         for (int i = 0; i < N; i++) {
             ArrayList<Integer> params = new ArrayList<>();
             for (int j = 0; j < i; j += 1) {
