@@ -67,7 +67,7 @@ public class TestSimpleOomage {
             oomages.add(SimpleOomage.randomSimpleOomage());
         }
 
-        assertTrue(OomageTestUtility.haveNiceHashCodeSpread(oomages, 9));
+        assertTrue(OomageTestUtility.haveNiceHashCodeSpread(oomages, 10));
     }
 
     /** Calls tests for SimpleOomage. */
