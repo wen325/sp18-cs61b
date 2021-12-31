@@ -128,26 +128,17 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         // Throws an exception if index is invalid. DON'T CHANGE THIS LINE.
         validateSinkSwimArg(index);
 
+        /** TODO: Your code here. */
         if (size() == 2 || size() == 1){
             return;
         }
 
-        /** TODO: Your code here. */
-        int leftIndexOrigin = leftIndex(1);
-        int rightIndexOrigin = rightIndex(1);
-        while (contents[index].priority() > contents[leftIndexOrigin].priority() || contents[index].priority() > contents[rightIndexOrigin].priority()) {
-            if (contents[leftIndexOrigin].priority() > contents[rightIndexOrigin].priority()) {
-                swap(index, rightIndexOrigin);
-                index = rightIndex(index);
-                rightIndexOrigin = rightIndex(rightIndexOrigin);
-                leftIndexOrigin = leftIndex(rightIndexOrigin);
-            }else{
-                swap(index, leftIndexOrigin);
-                index = leftIndex(index);
-                rightIndexOrigin = rightIndex(leftIndexOrigin);
-                leftIndexOrigin = leftIndex(leftIndexOrigin);
-            }
-            if (rightIndexOrigin > size() || leftIndexOrigin > size()) {
+        int indexOfSmallerPriority = min(leftIndex(1),rightIndex(1));
+        while (contents[index].priority() > contents[indexOfSmallerPriority].priority()) {
+            swap(index, indexOfSmallerPriority);
+            index = indexOfSmallerPriority;
+            indexOfSmallerPriority = min(rightIndex(indexOfSmallerPriority),leftIndex(indexOfSmallerPriority));
+            if (indexOfSmallerPriority > size()) {
                 break;
             }
         }
