@@ -28,7 +28,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     private static int leftIndex(int i) {
         /* TODO: Your code here! */
-        return 0;
+       return 2 * i;
     }
 
     /**
@@ -36,7 +36,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     private static int rightIndex(int i) {
         /* TODO: Your code here! */
-        return 0;
+        return 2 * i + 1;
     }
 
     /**
@@ -44,7 +44,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     private static int parentIndex(int i) {
         /* TODO: Your code here! */
-        return 0;
+        return i / 2;
     }
 
     /**
@@ -108,7 +108,17 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         validateSinkSwimArg(index);
 
         /** TODO: Your code here. */
-        return;
+        int parentIndexOrigin = parentIndex(index);
+        if (parentIndexOrigin != 0) {
+            while (contents[index].priority() < contents[parentIndexOrigin].priority()) {
+                swap(index, parentIndex(index));
+                parentIndexOrigin = parentIndex(parentIndexOrigin);
+                index = parentIndex(index);
+                if (parentIndexOrigin == 0) {
+                    break;
+                }
+            }
+        }
     }
 
     /**
@@ -118,8 +128,30 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         // Throws an exception if index is invalid. DON'T CHANGE THIS LINE.
         validateSinkSwimArg(index);
 
+        if (size() == 2 || size() == 1){
+            return;
+        }
+
         /** TODO: Your code here. */
-        return;
+        int leftIndexOrigin = leftIndex(1);
+        int rightIndexOrigin = rightIndex(1);
+        while (contents[index].priority() > contents[leftIndexOrigin].priority() || contents[index].priority() > contents[rightIndexOrigin].priority()) {
+            if (contents[leftIndexOrigin].priority() > contents[rightIndexOrigin].priority()) {
+                swap(index, rightIndexOrigin);
+                index = rightIndex(index);
+                rightIndexOrigin = rightIndex(rightIndexOrigin);
+                leftIndexOrigin = leftIndex(rightIndexOrigin);
+            }else{
+                swap(index, leftIndexOrigin);
+                index = leftIndex(index);
+                rightIndexOrigin = rightIndex(leftIndexOrigin);
+                leftIndexOrigin = leftIndex(leftIndexOrigin);
+            }
+            if (rightIndexOrigin > size() || leftIndexOrigin > size()) {
+                break;
+            }
+        }
+
     }
 
     /**
@@ -134,6 +166,9 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         }
 
         /* TODO: Your code here! */
+        contents[size + 1] = new Node(item, priority);
+        size += 1;
+        swim(size);
     }
 
     /**
@@ -143,7 +178,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
     @Override
     public T peek() {
         /* TODO: Your code here! */
-        return null;
+        return contents[1].item();
     }
 
     /**
@@ -158,7 +193,12 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
     @Override
     public T removeMin() {
         /* TODO: Your code here! */
-        return null;
+        T returnItem = peek();
+        swap(1,size());
+        contents[size] = null;
+        size -= 1;
+        sink(1);
+        return returnItem;
     }
 
     /**
