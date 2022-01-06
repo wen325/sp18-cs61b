@@ -35,7 +35,7 @@ public class MergeSort {
     private static <Item extends Comparable> Queue<Queue<Item>>
             makeSingleItemQueues(Queue<Item> items) {
         // Your code here!
-        Queue<Queue<Item>> returnQueue = new Queue<Queue<Item>>();
+        Queue<Queue<Item>> returnQueue = new Queue<>();
         for (Item singleitem: items) {
             Queue<Item> s = new Queue();
             s.enqueue(singleitem);
@@ -88,8 +88,8 @@ public class MergeSort {
         students.enqueue("Ethan");
         students.enqueue("BengBeng");
 //        System.out.println(makeSingleItemQueues(students));
-        Queue<String> sortedstudents = MergeSort.mergeSort(students);
-        System.out.println(students);
-        System.out.println(sortedstudents);
+//        Queue<String> sortedstudents = MergeSort.mergeSort(students);
+//        System.out.println(students);
+//        System.out.println(sortedstudents);
     }
 }
