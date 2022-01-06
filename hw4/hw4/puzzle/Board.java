@@ -122,6 +122,10 @@ public class Board implements WorldState{
 		return true;
 	}
 
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
 
 	/** Returns the string representation of the board.
       * Uncomment this method. */
