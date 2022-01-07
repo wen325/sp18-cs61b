@@ -14,6 +14,8 @@ public class CountingSortTester {
      **/
     private static int[] nonNegative = {9, 5, 2, 1, 5, 3, 0, 3, 1, 1};
 
+    private static int[] emptyArr = {};
+
     public static void assertIsSorted(int[] a) {
         int previous = Integer.MIN_VALUE;
         for (int x : a) {
