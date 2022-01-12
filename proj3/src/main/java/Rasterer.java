@@ -105,7 +105,10 @@ public class Rasterer {
     }
 
     public boolean bound(double ullon, double ullat, double lrlon, double lrlat) {
-        if (ullon < MapServer.ROOT_ULLON || lrlon > MapServer.ROOT_LRLON || ullat > MapServer.ROOT_ULLAT || lrlat < MapServer.ROOT_LRLAT) {
+//        if (ullon < MapServer.ROOT_ULLON || lrlon > MapServer.ROOT_LRLON || ullat > MapServer.ROOT_ULLAT || lrlat < MapServer.ROOT_LRLAT) {
+//            return false;
+//        }
+        if (lrlon < MapServer.ROOT_ULLON || ullon > MapServer.ROOT_LRLON || lrlat > MapServer.ROOT_ULLAT || ullat < MapServer.ROOT_LRLAT) {
             return false;
         }
         if (ullon > lrlon || ullat < lrlat) {
