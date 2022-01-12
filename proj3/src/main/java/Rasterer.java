@@ -27,17 +27,17 @@ public class Rasterer {
         boolean query_success = true;
         depth = getDepth(requiredResolution(lrlon, ullon, width, SL), SL);
 
-        if (!bound(ullon, ullat, lrlon, lrlat)) {
-            results.put("query_success", false);
-            results.put("raster_ul_lon", params.get("ullon"));
-            results.put("raster_ul_lat", params.get("ullat"));
-            results.put("raster_lr_lon", params.get("lrlon"));
-            results.put("raster_lr_lat", params.get("lrlat"));
-            results.put("depth", depth);
-            grid = new String[1][1];
-            results.put("render_grid", grid);
-            return results;
-        }
+//        if (!bound(ullon, ullat, lrlon, lrlat)) {
+//            results.put("query_success", false);
+//            results.put("raster_ul_lon", params.get("ullon"));
+//            results.put("raster_ul_lat", params.get("ullat"));
+//            results.put("raster_lr_lon", params.get("lrlon"));
+//            results.put("raster_lr_lat", params.get("lrlat"));
+//            results.put("depth", depth);
+//            grid = new String[1][1];
+//            results.put("render_grid", grid);
+//            return results;
+//        }
 
         int[] topLeft, bottomRight;
         topLeft = getImageIndex(ullon, ullat, depth);  //  get the x and y value from query box(ullon, ullat)
@@ -55,11 +55,16 @@ public class Rasterer {
             }
         }
 
+        double raster_ul_lon = getImageCorner(depth, topLeft[0], topLeft[1], "raster_ul_lon");
+        double raster_ul_lat = getImageCorner(depth, topLeft[0], topLeft[1], "raster_ul_lat");
+        double raster_lr_lon = getImageCorner(depth, column + topLeft[0] -1, row + topLeft[1] - 1, "raster_lr_lon");
+        double raster_lr_lat = getImageCorner(depth, column + topLeft[0] -1, row + topLeft[1] - 1, "raster_lr_lat");
 
-        results.put("raster_ul_lon", params.get("ullon"));
-        results.put("raster_ul_lat", params.get("ullat"));
-        results.put("raster_lr_lon", params.get("lrlon"));
-        results.put("raster_lr_lat", params.get("lrlat"));
+
+        results.put("raster_ul_lon", raster_ul_lon);
+        results.put("raster_ul_lat", raster_ul_lat);
+        results.put("raster_lr_lon", raster_lr_lon);
+        results.put("raster_lr_lat", raster_lr_lat);
         results.put("depth", depth);
         results.put("query_success", query_success);
         results.put("render_grid", grid);
@@ -109,12 +114,12 @@ public class Rasterer {
     //** get image index; the image can cover lon and lat at specified depth */
     public int[] getImageIndex(double lon, double lat, int depth) {
         int[] imageIndex = new int[2];
-        int totalimages = (int) Math.pow(2, depth);
-        int lonIndex = (int) ((lon - MapServer.ROOT_ULLON) / (MapServer.ROOT_LRLON - MapServer.ROOT_ULLON) * totalimages);
-        int latIndex = (int) ((lat - MapServer.ROOT_ULLAT) / (MapServer.ROOT_LRLAT - MapServer.ROOT_ULLAT) * totalimages);
+        int totalImages = (int) Math.pow(2, depth);
+        int lonIndex = (int) ((lon - MapServer.ROOT_ULLON) / (MapServer.ROOT_LRLON - MapServer.ROOT_ULLON) * totalImages);
+        int latIndex = (int) ((lat - MapServer.ROOT_ULLAT) / (MapServer.ROOT_LRLAT - MapServer.ROOT_ULLAT) * totalImages);
 
-        imageIndex[0] = Math.min(lonIndex, totalimages - 1);
-        imageIndex[1] = Math.min(latIndex, totalimages - 1);
+        imageIndex[0] = Math.min(lonIndex, totalImages - 1);
+        imageIndex[1] = Math.min(latIndex, totalImages - 1);
 //        imageIndex[0] = lonIndex;
 //        imageIndex[1] = latIndex;
         return imageIndex;
@@ -129,6 +134,25 @@ public class Rasterer {
         }
 
         return true;
+    }
+
+    public double getImageCorner(int depth, int x, int y, String corner) {
+        int totalImages = (int) Math.pow(2, depth);
+        switch (corner) {
+            case "raster_ul_lon":
+                return MapServer.ROOT_ULLON + (MapServer.ROOT_LRLON - MapServer.ROOT_ULLON) / totalImages * x;
+            case "raster_lr_lon":
+                return MapServer.ROOT_ULLON + (MapServer.ROOT_LRLON - MapServer.ROOT_ULLON) / totalImages * (x + 1);
+            case "raster_ul_lat":
+                return MapServer.ROOT_ULLAT + (MapServer.ROOT_LRLAT - MapServer.ROOT_ULLAT) / totalImages * y;
+            case "raster_lr_lat":
+                return MapServer.ROOT_ULLAT + (MapServer.ROOT_LRLAT - MapServer.ROOT_ULLAT) / totalImages * (y + 1);
+        }
+        return 0;
+//        double raster_ul_lon = MapServer.ROOT_ULLON + (MapServer.ROOT_LRLON - MapServer.ROOT_ULLON) / totalImages * x;
+//        double raster_lr_lon = MapServer.ROOT_ULLON + (MapServer.ROOT_LRLON - MapServer.ROOT_ULLON) / totalImages * (x + 1);
+//        double raster_ul_lat = MapServer.ROOT_ULLAT + (MapServer.ROOT_LRLAT - MapServer.ROOT_ULLAT) / totalImages * y;
+//        double raster_lr_lat = MapServer.ROOT_ULLAT + (MapServer.ROOT_LRLAT - MapServer.ROOT_ULLAT) / totalImages * (y + 1);
     }
 
     /**
@@ -167,6 +191,10 @@ public class Rasterer {
         queryBox(results, params);
 
         System.out.println(results.get("query_success"));
+        System.out.println(results.get("raster_ul_lon"));
+        System.out.println(results.get("raster_lr_lon"));
+        System.out.println(results.get("raster_lr_lat"));
+        System.out.println(results.get("raster_ul_lat"));
 
 //        System.out.println("Since you haven't implemented getMapRaster, nothing is displayed in "
 //                           + "your browser.");
