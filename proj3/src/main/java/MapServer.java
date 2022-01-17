@@ -285,7 +285,12 @@ public class MapServer {
      * cleaned <code>prefix</code>.
      */
     public static List<String> getLocationsByPrefix(String prefix) {
-        return new LinkedList<>();
+        List<String> results = new LinkedList<>();
+
+
+
+        return results;
+//        return new LinkedList<>();
     }
 
     /**

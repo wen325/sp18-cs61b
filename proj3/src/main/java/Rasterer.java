@@ -47,7 +47,7 @@ public class Rasterer {
 
         grid = new String[row][column];  // the grid array size;
 
-
+        //** add images name to the grid arrays */
         for (int i = 0; i < column; i++) {
             for (int j = 0; j < row; j++) {
                 grid[j][i] = "d" + depth + "_x" + (i + topLeft[0]) + "_y" + (j + topLeft[1]) + ".png";
@@ -118,6 +118,7 @@ public class Rasterer {
         return true;
     }
 
+    //** get Image corner from its depth, x and y */
     public double getImageCorner(int depth, int x, int y, String corner) {
         int totalImages = (int) Math.pow(2, depth);
         switch (corner) {
@@ -164,16 +165,7 @@ public class Rasterer {
     public Map<String, Object> getMapRaster(Map<String, Double> params) {
 //         System.out.println(params);
         Map<String, Object> results = new HashMap<>();
-//        Map<String, Object> results = new Rasterer<>();
-
         queryBox(results, params);
-
-//        System.out.println(results.get("query_success"));
-//        System.out.println(results.get("raster_ul_lon"));
-//        System.out.println(results.get("raster_lr_lon"));
-//        System.out.println(results.get("raster_lr_lat"));
-//        System.out.println(results.get("raster_ul_lat"));
-
 //        System.out.println("Since you haven't implemented getMapRaster, nothing is displayed in "
 //                           + "your browser.");
         return results;
