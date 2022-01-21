@@ -36,10 +36,13 @@ public class TestPlip {
 
     @Test
     public void testReplicate() {
-
+        Plip p = new Plip(1.2);
+        Plip baby = p.replicate();
+        assertNotSame(baby, p);
+        assertEquals(baby.energy(), p.energy(), 0.01);
     }
 
-    //@Test
+    @Test
     public void testChoose() {
         Plip p = new Plip(1.2);
         HashMap<Direction, Occupant> surrounded = new HashMap<Direction, Occupant>();
@@ -56,6 +59,22 @@ public class TestPlip {
         Action expected = new Action(Action.ActionType.STAY);
 
         assertEquals(expected, actual);
+
+        //**Test the second rule: if the Plip has energy greater than 1.0, it should replicate to an available space. */
+        Plip fatP = new Plip(1.2);
+        HashMap<Direction, Occupant> surroundedfatP = new HashMap<>();
+        surroundedfatP.put(Direction.TOP, new Empty());
+        surroundedfatP.put(Direction.BOTTOM, new Impassible());
+        surroundedfatP.put(Direction.LEFT, new Impassible());
+        surroundedfatP.put(Direction.RIGHT, new Impassible());
+
+        actual = fatP.chooseAction(surroundedfatP);
+        expected = new Action(Action.ActionType.REPLICATE, Direction.TOP);
+
+        assertEquals(actual, expected);
+
+
+
     }
 
     public static void main(String[] args) {
