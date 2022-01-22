@@ -12,7 +12,7 @@ public class SeamCarver {
 	public SeamCarver(Picture picture) {
 		this.width = picture.width();
 		this.height = picture.height();
-		this.picture = picture;
+		this.picture = new Picture(picture);
 
 	}
 
@@ -83,7 +83,9 @@ public class SeamCarver {
 		// The lower rows energyMatrix /
 		for (int i = 1; i < height; i++) {
 			for (int j = 0; j < width; j++) {
-				if (j == 0) {
+				if (width == 1) {
+					energyMatrix[i][j] = energy(j, i) + energyMatrix[i - 1][j];
+				}else if (j == 0) {
 					energyMatrix[i][j] = energy(j, i) + Math.min(energyMatrix[i - 1][j], energyMatrix[i - 1][j + 1]);
 				} else if (j == width - 1) {
 					energyMatrix[i][j] = energy(j, i) + Math.min(energyMatrix[i - 1][j], energyMatrix[i - 1][j - 1]);
@@ -108,7 +110,7 @@ public class SeamCarver {
 			}
 			if (seamPath[i] == 0) {
 				start = 0;
-				end = 2;
+				end = Math.min(width, 2);
 			}else if(seamPath[i] == width - 1) {
 				start = width - 2;
 				end = width;
