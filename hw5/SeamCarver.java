@@ -1,24 +1,24 @@
 import edu.princeton.cs.algs4.Picture;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class SeamCarver {
 
 	private int width;
 	private int height;
 	private Picture picture;
+	private double[][] energyMatrix;
 
 	public SeamCarver(Picture picture) {
 		this.width = picture.width();
 		this.height = picture.height();
 		this.picture = new Picture(picture);
-
+		this.energyMatrix = new double[width][height];
 	}
 
 	// current picture
 	public Picture picture() {
-		return this.picture;
+		return new Picture(picture);
 	}
 
 	// width of current picture
@@ -31,12 +31,15 @@ public class SeamCarver {
 		return height;
 	}
 
-
 	// energy of pixel at column x and row y
 	public double energy(int x, int y) {
 
 		if (x < 0 || x > width - 1 || y < 0 || y > height - 1) {
 			throw new IndexOutOfBoundsException();
+		}
+
+		if (energyMatrix[x][y] != 0) {
+			return energyMatrix[x][y];
 		}
 
 		x += width;
@@ -57,7 +60,8 @@ public class SeamCarver {
 		double energyYBlue = (bottomRGB.getBlue() - topRGB.getBlue()) * (bottomRGB.getBlue() - topRGB.getBlue());
 		double energyY = energyYRed + energyYGreen + energyYBlue;
 
-		return energyX + energyY;
+		energyMatrix[x % width][y % height] = energyX + energyY;
+		return energyMatrix[x % width][y % height];
 	}
 
 	// sequence of indices for horizontal seam
@@ -73,24 +77,24 @@ public class SeamCarver {
 
 	// sequence of indices for vertical seam. /
 	public int[] findVerticalSeam() {
-		double[][] energyMatrix = new double[height][width];
+		double[][] energycostMatrix = new double[height][width];
 
-		// The top row energyMatrix /
+		// The top row energycostMatrix /
 		for (int j = 0; j < width; j++) {
-			energyMatrix[0][j] = energy(j, 0);
+			energycostMatrix[0][j] = energy(j, 0);
 		}
 
-		// The lower rows energyMatrix /
+		// The lower rows energycostMatrix /
 		for (int i = 1; i < height; i++) {
 			for (int j = 0; j < width; j++) {
 				if (width == 1) {
-					energyMatrix[i][j] = energy(j, i) + energyMatrix[i - 1][j];
+					energycostMatrix[i][j] = energy(j, i) + energycostMatrix[i - 1][j];
 				}else if (j == 0) {
-					energyMatrix[i][j] = energy(j, i) + Math.min(energyMatrix[i - 1][j], energyMatrix[i - 1][j + 1]);
+					energycostMatrix[i][j] = energy(j, i) + Math.min(energycostMatrix[i - 1][j], energycostMatrix[i - 1][j + 1]);
 				} else if (j == width - 1) {
-					energyMatrix[i][j] = energy(j, i) + Math.min(energyMatrix[i - 1][j], energyMatrix[i - 1][j - 1]);
+					energycostMatrix[i][j] = energy(j, i) + Math.min(energycostMatrix[i - 1][j], energycostMatrix[i - 1][j - 1]);
 				} else {
-					energyMatrix[i][j] = energy(j, i) + Math.min(energyMatrix[i - 1][j], Math.min(energyMatrix[i - 1][j - 1], energyMatrix[i - 1][j + 1]));
+					energycostMatrix[i][j] = energy(j, i) + Math.min(energycostMatrix[i - 1][j], Math.min(energycostMatrix[i - 1][j - 1], energycostMatrix[i - 1][j + 1]));
 				}
 			}
 		}
@@ -100,11 +104,11 @@ public class SeamCarver {
 		int start = 0;
 		int end = width;
 		for (int i = height - 1; i >= 0; i--) {
-			double minimumEnergy = energyMatrix[i][start];
+			double minimumEnergy = energycostMatrix[i][start];
 			seamPath[i] = start;
 			for (int j = start; j < end; j++) {
-				if (energyMatrix[i][j] < minimumEnergy) {
-					minimumEnergy = energyMatrix[i][j];
+				if (energycostMatrix[i][j] < minimumEnergy) {
+					minimumEnergy = energycostMatrix[i][j];
 					seamPath[i] = j;
 				}
 			}
@@ -124,7 +128,7 @@ public class SeamCarver {
 //		System.out.println("Path root");
 //		for (int j = 0; j < height; j++) {
 //			for (int i = 0; i < width; i++) {
-//				System.out.print(energyMatrix[i][j] + " ");
+//				System.out.print(energycostMatrix[i][j] + " ");
 //			}
 //			System.out.println("");
 //		}
