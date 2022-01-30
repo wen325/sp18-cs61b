@@ -38,7 +38,9 @@ public class BinaryTrie implements Serializable {
 			}
 		});
 
-		//** the for loop to search c is not a wise method */
+		//** the for loop to search c is not a wise method. The correct way is get Entry from frequencyTable.
+		// Currently, it can only encode ASCII from 1 to 256, might be not suitable for Chinese character.
+		// */
 		for (char c = 1; c < R - 1; c++) {
 			if (frequencyTable.get(c) != null) {
 				pq.insert(new BinaryTrie(c, frequencyTable.get(c), null, null));
